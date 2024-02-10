@@ -1,6 +1,6 @@
-from model.engine import EngineMilesLimited
+from model.engine import Engine
 
-class WilloughbyEngine(EngineMilesLimited):
+class WilloughbyEngine(Engine):
     def __init__(self, last_service_miles, current_miles):
         self.current_miles = current_miles
         self.last_service_miles = last_service_miles
