@@ -7,6 +7,8 @@ from model.car.carFactory import CarFactory
 from model.engine.capuletEngine import CapuletEngine
 from model.engine.sternamEngine import SternamEngine
 from model.engine.willoughbyEngine import WilloughbyEngine
+from model.tire.carriganTire import CarriganTire
+from model.tire.octoprimeTire import OctoprimeTire
 
 
 class TestEngine(unittest.TestCase):
@@ -148,6 +150,31 @@ class TestBattery(unittest.TestCase):
         battery1 = NubbinBattery(today, last_service_date)
         self.assertFalse(battery1.needs_service())
 
+class TestTire(unittest.TestCase):
+    def test_needs_service_true(self):
+        tire_wear = [0.1, 0.3, 0.2, 0.9]
+        tires = CarriganTire(tire_wear)
+        self.assertTrue(tires.needs_service())
+
+    def test_needs_service_false(self):
+        tire_wear = [0.1, 0.2, 0.4, 0.2]
+        tires = CarriganTire(tire_wear)
+        
+        self.assertFalse(tires.needs_service())
+
+    def test_needs_service_true(self):
+        tire_wear = [0.8, 0.8, 0.8, 0.7]
+        tires = OctoprimeTire(tire_wear)
+        self.assertTrue(tires.needs_service())
+
+    def test_needs_service_false(self):
+        tire_wear = [0.1, 0.2, 0.4, 0.2]
+        tires = OctoprimeTire(tire_wear)
+
+
+        self.assertFalse(tires.needs_service())
+
+    
 class TestCar(unittest.TestCase):
     def test_cars_needs_service(self):
         factory = CarFactory()
